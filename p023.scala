@@ -17,10 +17,14 @@ def factorize(n:Int, ps:Stream[Int] = primes):List[(Int, Int)] = {
   else (p, exp) :: factorize(quot, ps.tail)
 }
 
-val divisors = 0 :: 1 :: (2 until 10000).map(n => factorize(n).map {
+val MAX = 28123
+val divisors = 0 :: 1 :: (2 to MAX).map(n => factorize(n).map {
   case (p, e) => (0 to e).map(pow(p, _).toInt).sum
 }.product - n).toList
+val abundants = divisors.zipWithIndex.collect {
+  case (n, i) if n > i => i
+}
 
-println(divisors.zipWithIndex.collect {
-  case (n, i) if n < 10000 && divisors(n) != n && divisors(n) == i => i
-}.sum)
+println((1 to MAX).diff(abundants.zipWithIndex.view.flatMap {
+  case (n, i) => abundants.drop(i).takeWhile(MAX - n >=).map(n +)  
+}).sum)
