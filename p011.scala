@@ -20,5 +20,9 @@ val grid = """
 20 73 35 29 78 31 90 01 74 31 49 71 48 86 81 16 23 57 05 54
 01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48
 """.tail.split("\n").map(_.split(" ").map(_.toInt).toList).toList
-val ps = for (x <- 0 to 19; y <- 0 to 19) yield(x, y)
-println((grid ++ grid.transpose ++ (ps.groupBy(p => p._1 + p._2).values ++ ps.groupBy(p => p._1 - p._2).values).map(_.map(p => grid(p._1)(p._2)))).flatMap(_.sliding(4).map(_.product)).max)
+
+val points = for (x <- 0 to 19; y <- 0 to 19) yield(x, y)
+val diagonals = (points.groupBy(p => p._1 + p._2).values ++
+  points.groupBy(p => p._1 - p._2).values).map(_.map(p => grid(p._1)(p._2)))
+val rows = grid ++ grid.transpose ++ diagonals
+println(rows.flatMap(_.sliding(4).map(_.product)).max)
