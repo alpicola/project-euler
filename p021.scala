@@ -1,5 +1,3 @@
-import math.pow
-
 lazy val primes:Stream[Int] = 2 #:: Stream.from(3).filter(i =>
   primes.takeWhile(j => j * j <= i).forall(i % _ > 0))
 
@@ -18,7 +16,7 @@ def factorize(n:Int, ps:Stream[Int] = primes):List[(Int, Int)] = {
 }
 
 val divisors = 0 :: 1 :: (2 until 10000).map(n => factorize(n).map {
-  case (p, e) => (0 to e).map(pow(p, _).toInt).sum
+  case (p, e) => (0 to e).map(math.pow(p, _).toInt).sum
 }.product - n).toList
 
 println(divisors.zipWithIndex.collect {
