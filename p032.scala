@@ -1,8 +1,4 @@
-import math.pow
-
-implicit def seq2int(ns:Seq[Int]):Int = ns.reverse.zipWithIndex.map {
-  case (n, i) => n * pow(10, i).toInt
-}.sum
+implicit def seq2int(ns:Seq[Int]):Int = ns.mkString.toInt
 
 println((1 to 7).dropWhile { i =>
   (2 to 9-i-1) > (9 to 9-i+1 by -1)
