@@ -9,10 +9,9 @@ class PrimeSet(N:Int) extends Iterable[Int] {
 
   private def from(n:Int) = new Iterator[Int] {
     private var p = flags.nextSetBit(n)
-    def hasNext:Boolean = p != -1
-    def next:Int = {
+    def hasNext = p != -1
+    def next = {
       val q = p
-      p = flags.nextSetBit(p+1)
       if (q > sieved) {
         if (square(q) <= N) {
           (q * q to N by q).foreach(flags.clear(_))
@@ -21,6 +20,7 @@ class PrimeSet(N:Int) extends Iterable[Int] {
           sieved = N
         }
       }
+      p = flags.nextSetBit(p+1)
       q
     }
   }
