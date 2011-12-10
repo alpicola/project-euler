@@ -10,10 +10,10 @@ println(source.getLines.count { line =>
       case 'Q' => 12
       case 'K' => 13
       case 'A' => 14
-      case n => n.asDigit
+      case d => d.asDigit
     }.sorted.reverse.toList
     val flush = cards.map(_(1)).sliding(2).forall(s => s(0) == s(1))
-    val straight = values.zipWithIndex.map(p => p._1 + p._2).forall(values.head ==)
+    val straight = values.zipWithIndex.forall(p => values.head == p._1 + p._2)
     values.distinct.map(v => (values.count(v ==), v)).sorted.reverse match {
       case _ if (flush && straight) => 9 :: values
       case List((4, a), (1, b)) => List(8, a, b)
