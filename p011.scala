@@ -21,7 +21,7 @@ val grid = """
 01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48
 """.tail.split("\n").map(_.split(" ").map(_.toInt).toList).toList
 
-val points = for (x <- 0 to 19; y <- 0 to 19) yield(x, y)
+val points = for (x <- 0 to 19; y <- 0 to 19) yield (x, y)
 val diagonals = (points.groupBy(p => p._1 + p._2).values ++
   points.groupBy(p => p._1 - p._2).values).map(_.map(p => grid(p._1)(p._2)))
 val rows = grid ++ grid.transpose ++ diagonals
