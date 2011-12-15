@@ -6,10 +6,10 @@ println((1 to 1000).maxBy { n =>
         val t = (n - q * q) / p
         (t, m - (q + m) % t, (q + m) / t * r + s, r)
     }
-    val (k, x) = it.zipWithIndex.drop(1).collectFirst {
+    val (k, x) = it.drop(1).zipWithIndex.collectFirst {
       case ((1, `m`, _, s), i) => (i, s) 
     }.get
-    if (k % 2 == 0) x else it.drop(k-1).next._4
+    if (k % 2 == 0) it.drop(k).next._4 else x
   } else {
     BigInt(0)
   }
