@@ -1,6 +1,6 @@
 case class Vector(x:Int, y:Int) {
-  def *(p:Vector):Int = x * p.x + y * p.y
-  def -(p:Vector) = Vector(x - p.x, y - p.y)
+  def *(v:Vector) = x * v.x + y * v.y
+  def -(v:Vector) = Vector(x - v.x, y - v.y)
 }
 
 val grid = for (x <- 0 to 50; y <- 0 to 50) yield Vector(x, y)
