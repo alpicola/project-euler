@@ -15,15 +15,15 @@ println(source.getLines.grouped(10).map { lines =>
     val y = offset / 9
     if (matrix(y)(x) == 0) {
       val row = matrix(y)
-      val col = matrix.transpose.apply(x)
+      val col = matrix.map(_(x))
       val box = matrix.slice(y / 3 * 3, y / 3 * 3 + 3).flatMap {
         _.slice(x / 3 * 3, x / 3 * 3 + 3)
       }
       (digits -- row -- col -- box).foreach { d =>
         matrix(y)(x) = d
         investigate(offset + 1)
-        matrix(y)(x) = 0
       }
+      matrix(y)(x) = 0
     } else {
       investigate(offset + 1)
     }
