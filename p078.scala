@@ -1,10 +1,8 @@
 import scala.collection.mutable.ArrayBuffer
 
+def pentagonals = List(Iterator.from(1).map(n => n * (n * 3 + 1) / 2),
+                       Iterator.from(1).map(n => n * (n * 3 - 1) / 2))
 val p = ArrayBuffer(1)
-def pentagonals = List(
-  Iterator.from(1).map(n => n * (n * 3 + 1) / 2),
-  Iterator.from(1).map(n => n * (n * 3 - 1) / 2)
-)
 
 println(Iterator.from(1).map { n =>
   p.append(pentagonals.flatMap(_.takeWhile(n >=).zipWithIndex.map {
@@ -13,4 +11,3 @@ println(Iterator.from(1).map { n =>
   }).reduceLeft((s, i) => (s + i) % 1000000))
   p.last
 }.indexOf(0) + 1)
-
