@@ -8,7 +8,7 @@ while (i != -1) {
 }
 
 println((2 until N).minBy { n =>
-  val phi = math.rint(n * factors(n).map(1 - 1.0 / _).product).toInt
+  val phi = (n * factors(n).map(1 - 1.0 / _).product).round
   if (phi.toString.sorted != n.toString.sorted) N
   else n.toDouble / phi
 })

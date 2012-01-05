@@ -6,4 +6,4 @@ val n = Iterator.iterate((21L, 4L)) {
   case (a, _) if (a > 1000000000000L) => a
 }.get
 
-println(rint(n / sqrt(2)).toLong)
+println((n / sqrt(2)).round)
