@@ -3,7 +3,7 @@ class PrimeSet(N:Int) extends Iterable[Int] {
 
   private var sieved = 1
   private val flags = new BitSet()
-  flags.flip(2, N)
+  flags.set(2, N)
 
   private def square(n:Int) = BigInt(n).pow(2)
 

@@ -6,4 +6,3 @@ println(Iterator.iterate(1L, 1L) { case (a, b) =>
 }).indexWhere(p => List(p._1, p._2).forall {
   _._1.toString.take(9).sorted == "123456789"
 }) + 2)
-

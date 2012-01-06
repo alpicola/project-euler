@@ -2,9 +2,10 @@ import scala.util.Random
 
 val statistics = new Array[Int](40)
 
-def pile = Random.shuffle((1 to 16).toList)
-val cc = Iterator.continually(pile).flatten
-val ch = Iterator.continually(pile).flatten
+val List(cc, ch) = List.fill(2) {
+  val pile = Random.shuffle((1 to 16).toList)
+  Iterator.continually(pile).flatten
+}
 
 def roll(p:Int, c:Int = 1):Int = {
   statistics(p) += 1
