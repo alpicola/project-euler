@@ -2,8 +2,6 @@
 
 My solutions to [Project Euler](http://projecteuler.net/) problems.
 
-![Achievement](http://projecteuler.net/profile/alpicola.png)
-
 ## Usage
 
     $ scala -version
