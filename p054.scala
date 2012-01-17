@@ -4,14 +4,14 @@ val source = Source.fromFile("poker.txt")
 
 println(source.getLines.count { line =>
   val ranks = line.split(" ").grouped(5).map { cards =>
-    val values = cards.map(_(0)).map {
+    val values = cards.map(_(0) match {
       case 'T' => 10 
       case 'J' => 11
       case 'Q' => 12
       case 'K' => 13
       case 'A' => 14
       case d => d.asDigit
-    }.sorted.reverse.toList
+    }).sorted.reverse.toList
     val flush = cards.map(_(1)).sliding(2).forall(s => s(0) == s(1))
     val straight = values.zipWithIndex.forall(p => values.head == p._1 + p._2)
     values.distinct.map(v => (values.count(v ==), v)).sorted.reverse match {
@@ -27,7 +27,7 @@ println(source.getLines.count { line =>
     }
   }
   ranks.next.zip(ranks.next).dropWhile(p => p._1 == p._2) match {
-    case p :: ps => p._1 > p._2
+    case (a, b) :: _ => a > b
     case _ => false
   }
 })
