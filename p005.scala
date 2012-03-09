@@ -1,5 +1,4 @@
-val primes = List(2, 3, 5, 7, 11, 13, 17, 19)
+def gcd(a:Int, b:Int):Int = if (b == 0) a else gcd(b, a % b)
+def lcm(a:Int, b:Int) = a / gcd(a, b) * b
 
-println((1 until 20).map(n => primes.map { p =>
-  Iterator.iterate(n)(_ / p).indexWhere(_ % p != 0)
-}).transpose.map(_.max).zip(primes).map(p => BigInt(p._2).pow(p._1)).product)
+println((1 to 20).reduceLeft(lcm))
