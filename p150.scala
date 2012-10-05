@@ -2,9 +2,9 @@ val N = 1000
 val randoms = Iterator.iterate(0) { t =>
   ((615949L * t + 797807L) % 1048576).toInt
 }.drop(1).map(_ - 524288)
-val triangle = Iterator.range(1, N+1).map { n =>
-  randoms.take(n).scanLeft(0)(_ + _).toArray
-}.toArray
+val triangle = Array.tabulate(N) { n =>
+  randoms.take(n+1).scanLeft(0)(_ + _).toArray
+}
 
 println(Iterator.range(0, N).flatMap { x =>
   Iterator.range(0, x+1).flatMap { y =>
